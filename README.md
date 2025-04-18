@@ -34,7 +34,7 @@ Feel free to use any workflow that you feel comfortable with. Below is a suggest
 
 ## Deploying your project
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+Deploy your project using github pages.
 
 
 ## Submitting your solution
