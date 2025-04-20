@@ -4,31 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQ accordion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --White: hsl(0, 100%, 100%);
+      --Purple-100: hsl(275, 100%, 97%);
+      --Purple-600: hsl(292, 16%, 49%);
+      --Purple-800: hsl(293, 90%, 33%);
+      --Purple-950: hsl(292, 42%, 14%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      max-width: 1440px;
+      margin: auto;
+      overflow: hidden;
+      height: 100svh;
+      display: grid;
+      place-content: center;
+      font-family: "Work Sans", sans-serif;
+      font-size: 1rem;
+      background-image: url(./images/background-pattern-desktop.svg);
+      background-repeat: no-repeat;
+      background-position-y: top;
+      background-position-x: center;
+      background-color: var(--Purple-100);
+    }
+
+    button {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1.1rem;
+      padding-block: 1rem;
+      font-weight: 600;
+      gap: 1rem;
+      color: var(--Purple-950);
+      transition: all 200ms ease;
+    }
+
+    button>p {
+      text-align: left !important;
+    }
+
+    button:hover {
+      color: var(--Purple-800);
+    }
+
+    .container {
+      width: 38rem;
+      background-color: var(--White);
+      padding: 2.5rem;
+      border-radius: 20px;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .title h1 {
+      font-weight: 700;
+      font-size: 3rem;
+      color: var(--Purple-950);
+    }
+
+    .accordion-item {
+      display: grid;
+    }
+
+
+    .accordion-item>p {
+      height: 0;
+      overflow: hidden;
+      color: var(--Purple-600);
+    }
+
+    .active {
+      height: auto !important;
+    }
+
+    @media (max-width: 450px) {
+      body {
+        padding: 20px;
+        background-image: url(./images/background-pattern-mobile.svg);
+        background-size: 100vw;
+        font-size: 0.9rem;
+      }
+
+      button {
+        gap: 2rem;
+      }
+
+      button>p {
+        font-size: 1rem;
+      }
+
+      .container {
+        width: 100%;
+        padding: 20px;
+        gap: 1.5rem;
+        border-radius: 10px;
+      }
+
+      .accordion-item > p {
+        font-size: 0.9rem;
+      }
+
+      .title img {
+        width: 30px;
+      }
+
+      .title h1{
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-  FAQs
+  <div class="container">
+    <div class="title">
+      <img src="./images/icon-star.svg">
+      <h1>
+        FAQs
+      </h1>
+    </div>
 
-  What is Frontend Mentor, and how will it help me?
+    <div class="accordion-item">
+      <button onclick="select(event)">
+        <p>What is Frontend Mentor, and how will it help me?</p>
+        <img src="./images/icon-plus.svg">
+      </button>
+      <p>
+        Frontend Mentor offers realistic coding challenges to help developers improve their
+        frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for
+        all levels and ideal for portfolio building.
+      </p>
+    </div>
 
-  Frontend Mentor offers realistic coding challenges to help developers improve their 
-  frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for 
-  all levels and ideal for portfolio building.
 
-  Is Frontend Mentor free?
+    <div class="accordion-item">
 
-  Yes, Frontend Mentor offers both free and premium coding challenges, with the free 
-  option providing access to a range of projects suitable for all skill levels.
+      <button onclick="select(event)">
+        <p>Is Frontend Mentor free?</p>
+        <img src="./images/icon-plus.svg">
+      </button>
 
-  Can I use Frontend Mentor projects in my portfolio?
 
-  Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent
-  way to showcase your skills to potential employers!
+      <p>
+        Yes, Frontend Mentor offers both free and premium coding challenges, with the free
+        option providing access to a range of projects suitable for all skill levels.
+      </p>
+    </div>
 
-  How can I get help if I'm stuck on a Frontend Mentor challenge?
-  
-  The best place to get help is inside Frontend Mentor's Discord community. There's a help 
-  channel where you can ask questions and seek support from other community members.
+
+    <div class="accordion-item">
+
+      <button onclick="select(event)">
+        <p>Can I use Frontend Mentor projects in my portfolio?</p>
+        <img src="./images/icon-plus.svg">
+      </button>
+      <p>
+        Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent
+        way to showcase your skills to potential employers!
+      </p>
+    </div>
+
+
+    <div class="accordion-item">
+
+      <button onclick="select(event)">
+        <p>
+          How can I get help if I'm stuck on a Frontend Mentor challenge?
+        </p>
+        <img src="./images/icon-plus.svg">
+      </button>
+
+
+      <p>
+        The best place to get help is inside Frontend Mentor's Discord community. There's a help
+        channel where you can ask questions and seek support from other community members.
+      </p>
+    </div>
+  </div>
+
+
+  <script>
+
+    const buttons = Array.from(document.querySelectorAll('button'))
+
+    function resetAll() {
+      buttons.map(btn => {
+        btn.lastElementChild.src = "./images/icon-plus.svg"
+        btn.nextElementSibling.classList.remove('active')
+      })
+    }
+
+    function select(evt) {
+      const currentAccordion = evt.currentTarget;
+      if (currentAccordion.nextElementSibling.classList.contains('active')) {
+        resetAll()
+        return;
+      }
+      resetAll()
+      console.log(currentAccordion.lastChild)
+      currentAccordion.lastElementChild.src = "./images/icon-minus.svg";
+      currentAccordion.nextElementSibling.classList.add('active')
+    }
+  </script>
 
 </body>
+
 </html>
